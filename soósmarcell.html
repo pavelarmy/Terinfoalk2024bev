@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaddisznók Világa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .link-container {
+            margin: 20px 0;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Üdvözöllek a Vaddisznók Világában!</h1>
+    <p>A vaddisznók érdekes és fontos részei az ökoszisztémának. Tudj meg többet róluk az alábbi linkek segítségével!</p>
+    
+    <div class="link-container">
+        <a href="https://hu.wikipedia.org/wiki/Vaddisznó" target="_blank" id="link1">Vaddisznó - Wikipédia</a>
+        <br>
+        <a href="https://www.nationalgeographic.com/animals/mammals/facts/wild-boar" target="_blank" id="link2">Wild Boar - National Geographic</a>
+    </div>
+
+    <button onclick="showAlert()">Kattints ide további információért!</button>
+
+    <script>
+        function showAlert() {
+            alert("A vaddisznók az erdők titokzatos lakói! Nézd meg a fenti linkeket további részletekért.");
+        }
+    </script>
+</body>
+</html>
