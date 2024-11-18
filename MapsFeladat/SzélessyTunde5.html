@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps</title>
+    <style>
+        #map {
+            height: 400px; /* Térkép magassága */
+            width: 100%;  /* Térkép szélessége */
+        }
+    </style>
+</head>
+<body>
+    <h1>SzelessyTunde5</h1>
+    <div id="map"></div>
+
+    <!-- Google Maps JavaScript API betöltése -->
+    <script>
+        function initMap() {
+            // Alapértelmezett helyszín (Sárvár)
+            const location = { lat: 47.2542, lng: 16.9354 };
+
+            // Térkép létrehozása
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 7,
+                center: location,
+            });
+
+            // Marker hozzáadása
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
+    </script>
+</body>
+</html>
