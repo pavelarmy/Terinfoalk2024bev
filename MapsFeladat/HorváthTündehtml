@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps - Belga Étterem és Söröző Debrecen</title>
+    <style>
+        /* A térkép teljes szélességű és magasságú lesz */
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /* A body és html elem biztosítja, hogy a térkép teljes képernyőt lefedjen */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Belga Étterem és Söröző Debrecen</h1>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            // A helyszínek koordinátái Debrecenben
+            const belgaEtterem = { lat: 47.5290, lng: 21.6353 };
+            const belgaSorozo = { lat: 47.5305, lng: 21.6340 };
+
+            // A térkép inicializálása
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: belgaEtterem,  // A térkép középpontja a Belga Étterem
+            });
+
+            // Marker elhelyezése a Belga Étteremnél
+            const markerEtterem = new google.maps.Marker({
+                position: belgaEtterem,
+                map: map,
+                title: "Belga Étterem"
+            });
+
+            // Infóablak a Belga Étteremhez
+            const infoWindowEtterem = new google.maps.InfoWindow({
+                content: "<h3>Belga Étterem</h3><p>Finom belga ételek és hangulatos környezet Debrecen belvárosában.</p>"
+            });
+
+            markerEtterem.addListener("click", () => {
+                infoWindowEtterem.open(map, markerEtterem);
+            });
+
+            // Marker elhelyezése a Belga Sörözőnél
+            const markerSorozo = new google.maps.Marker({
+                position: belgaSorozo,
+                map: map,
+                title: "Belga Söröző"
+            });
+
+            // Infóablak a Belga Sörözőhöz
+            const infoWindowSorozo = new google.maps.InfoWindow({
+                content: "<h3>Belga Söröző</h3><p>Kiváló belga sörök és barátságos hangulat a Debreceni belváros szívében.</p>"
+            });
+
+            markerSorozo.addListener("click", () => {
+                infoWindowSorozo.open(map, markerSorozo);
+            });
+        }
+    </script>
+
+    <!-- A Google Maps API betöltése, a saját API kulcsoddal -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap" 
+    async defer></script>
+</body>
+</html>
