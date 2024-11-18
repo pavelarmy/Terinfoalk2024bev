@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Add a Map with Markers using HTML</title>
+
+  </head>
+  <body>
+  
+    <!-- Add a map with markers. -->
+	<gmp-map
+  center="44.4444444,-122.2222222"
+  zoom="4.5"
+  map-id="DEMO_MAP_ID"
+  style="height: 400px"
+>
+  <gmp-advanced-marker
+    position="37.5350005,-122.2222222"
+    title="Bair Island"
+  ></gmp-advanced-marker>
+  <gmp-advanced-marker
+    position="47.6666666,-122.5555555"
+    title="Bainbridge Island"
+  ></gmp-advanced-marker>
+</gmp-map>
+<!-- Add bootstrap script tag. -->
+	<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&libraries=maps,marker&v=beta"
+    defer>
+	</script>
+  </body>
+</html>
