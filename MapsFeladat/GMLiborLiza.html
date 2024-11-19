@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Libor Liza Google Maps: Soproni Plaza </title>
+  <style> 
+#map {
+height: 400px;
+width: 100%;
+}
+</style>
+</head> 
+
+<body>
+   <h1> Libor Liza Google Maps: Sopron Plaza</h1>
+   <div id="map"></div>
+
+<script>
+// Soproni Plaza location
+	function initMap() {
+	const location = { lat: 47.69837245033274, lng: 16.57912664101842 };
+// map 
+	const map = new google.maps.Map(document.getElementById("map"), {
+	   zoom: 12.5,
+	   center: location, 
+	});
+// marker 
+	const marker = new google.maps.Marker({
+	   position: location,
+	   map: map,
+	});
+   }
+</script>
+   <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
+   </script>
+</body>
+</html>
