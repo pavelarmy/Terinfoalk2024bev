@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nagy Péter - Épület Terület Számítása</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <!-- Cím megadása -->
+    <h1>Épület Terület Számítása - </h1>
+    <p>Adja meg az épület hosszát és szélességét méterben:</p>
+    
+    <!-- Mezők hozzáadása, ahová írni kell az adatokat, és a mértékegység feltüntetése -->
+    <label for="length">Hossz (méterben):</label>
+    <input type="number" id="length" placeholder="Hossz méterben"><br><br>
+
+    <label for="width">Szélesség (méterben):</label>
+    <input type="number" id="width" placeholder="Szélesség méterben"><br><br>
+
+    <!-- Számítás gomb hozzáadása -->
+    <button onclick="calculateBuildingArea()">Számítás</button>
+
+    <p id="result"></p>
+
+    <script>
+      function calcBuildingArea(length, width) {
+          // A területet négyzetméterben számoljuk ki
+          let areaInSquareMeters = length * width;
+          return areaInSquareMeters;
+      }
+
+      // Ezzel fogja beolvasni és kiszámítani az épület területét
+      function calculateBuildingArea() {
+          // Felhasználói adatok beolvasása
+          let length = parseFloat(document.getElementById("length").value);
+          let width = parseFloat(document.getElementById("width").value);
+
+          // Ellenőrzi, hogy az adatok helyesek-e, amit megadtál
+          if (isNaN(length) || isNaN(width) || length <= 0 || width <= 0) {
+              document.getElementById("result").innerText = "Kérem, adjon meg érvényes hossz- és szélesség értéket!";
+              return;
+          }
+          
+          // Terület kiszámítása
+          let area = calcBuildingArea(length, width);
+
+          // Eredmény kiírása
+          document.getElementById("result").innerText = "Az épület területe: " + area.toFixed(2) + " négyzetméter";
+      }
+    </script>
+  </body>
+</html>
