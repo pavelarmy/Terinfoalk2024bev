@@ -19,23 +19,105 @@
     <script>
         function initMap() {
             // Alapértelmezett helyszín (Nagykároly)
-            const location = { lat: 47.6900, lng: 22.4700 };
+            const location = { lat: 47.4642, lng: 19.1499 };
 
             // Térkép létrehozása
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,
+                zoom: 8,
                 center: location,
+				 mapId: "DEMO_MAP_ID",
             });
 
             // Marker hozzáadása
-            const marker = new google.maps.Marker({
-                position: location,
-                map: map,
-            });
+ const pinDeb = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "red",
+	glyphColor: "white",
+  });
+  const deb = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.5207, lng: 21.6283 },
+    title: "Debrecen",
+	content: pinDeb.element,
+  });
+ const pinNkr = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "red",
+	glyphColor: "white",
+  });
+  const Nkr = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.69, lng: 22.47 },
+    title: "Nagykároly",
+	content: pinNkr.element,
+  });
+  const pinKoki = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "red",
+	glyphColor: "white",
+  });
+  const Koki = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.4642, lng: 19.1499 },
+    title: "Kőbánya-Kispest vasútállomás",
+	content: pinKoki.element,
+  });
+  const pinKLN = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "red",
+	glyphColor: "white",
+  });
+  const KLN = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.4645, lng: 19.0206 },
+    title: "Kelenföld vasútállomás",
+	content: pinKLN.element,
+  });
+  const pinSop = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "red",
+	glyphColor: "white",
+  });
+  const Sop = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.6781, lng: 16.5875 },
+    title: "Sopron",
+	content: pinSop.element,
+  });
+  const vonatut = [
+    { lat: 47.5207, lng: 21.6283 },
+    { lat: 47.3290, lng: 21.1341 },
+    { lat: 47.1797, lng: 20.1757 },
+    { lat: 47.1824, lng: 19.8066 },
+	{ lat: 47.4386, lng: 19.2228 },
+	{ lat: 47.4642, lng: 19.1499 },
+	{ lat: 47.4645, lng: 19.0206 },
+	{ lat: 47.5855, lng: 18.3930 },
+	{ lat: 47.6644, lng: 18.3271 },
+	{ lat: 47.7500, lng: 18.1143 },
+	{ lat: 47.6824, lng: 17.6345 },
+	{ lat: 47.6023, lng: 17.2488 },
+	{ lat: 47.5823, lng: 17.0473 },
+	{ lat: 47.5997, lng: 16.8599 },
+	{ lat: 47.6781, lng: 16.5875 },
+  ];
+  const flightPath = new google.maps.Polyline({
+    path: vonatut,
+    geodesic: true,
+    strokeColor: "blue",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+  flightPath.setMap(map);
         }
     </script>
     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap&libraries=marker">
     </script>
 </body>
 </html>
