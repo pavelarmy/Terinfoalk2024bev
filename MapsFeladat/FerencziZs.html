@@ -21,11 +21,11 @@
     function initMap() {
       // A térkép kezdő helyzete és nagyítása
       const siofok = { lat: 46.909595, lng: 18.081383 }; // Siófok koordinátái
-
+const papa = { lat: 47.3324, lng: 17.4658 };
       // Térkép inicializálása
       const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 14, // Nagyítási szint
-        center: siofok, // A térkép középpontja
+        zoom: 9, // Nagyítási szint
+        center: papa, // A térkép középpontja
       });
 
       //  hozzáadása Siófokhoz egyedi ikon használatával
@@ -42,10 +42,27 @@
           strokeWeight: 2, // Körvonal vastagsága
         },
       });
-    }
-  </script>
 
-  <!-- Google Maps API betöltése az API-kulccsal -->
+    // A térkép kezdő helyzete és nagyítása
+      const sopron = { lat: 47.6848, lng: 16.5831 }; // Sorpon koordinátái
+
+      // Térkép inicializálása
+      //  hozzáadása Sopronhoz egyedi ikon használatával
+      const marker1 = new google.maps.Marker({
+        position: sopron,
+        map: map,
+        title: "Sopron", // Tooltip szöveg
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE, // Kör alakú 
+          scale: 10, // Méret
+          fillColor: "blue", // kék szín
+          fillOpacity: 1, // Átlátszatlanság
+          strokeColor: "black", // Körvonala fekete
+          strokeWeight: 2, // Körvonal vastagsága
+        },
+      });
+	  }
+  </script>
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
   </script>

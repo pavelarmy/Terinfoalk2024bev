@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Maps</title>
+    <title>Kisapostag Térképe</title>
     <style>
         #map {
             height: 400px; /* Térkép magassága */
@@ -12,21 +12,18 @@
     </style>
 </head>
 <body>
-    <h1>SzelessyTunde5</h1>
+    <h1>Kisapostag Térképe</h1>
     <div id="map"></div>
-
     <!-- Google Maps JavaScript API betöltése -->
     <script>
         function initMap() {
-            // Alapértelmezett helyszín (Sárvár)
-            const location = { lat: 47.2542, lng: 16.9354 };
-
+            // Kisapostag Koordinátái
+            const location = { lat: 46.8963, lng: 18.9340 };
             // Térkép létrehozása
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 7,
+                zoom: 10,
                 center: location,
             });
-
             // Marker hozzáadása
             const marker = new google.maps.Marker({
                 position: location,

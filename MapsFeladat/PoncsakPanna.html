@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poncsak Panna térkép</title>
+    <style>
+        #map {
+            height: 400px; /* Térkép magassága */
+            width: 100%;  /* Térkép szélessége */
+        }
+    </style>
+</head>
+<body>
+    <h1>Egy határváros és a főváros</h1>
+    <div id="map"></div>
+
+    <!-- Google Maps JavaScript API betöltése -->
+    <script>
+        function initMap() {
+            // Alapértelmezett helyszín (Balassagyarmat)
+            const location = { lat: 48.069623, lng: 19.292508 };
+			
+  // A térkép középpontjának koordinátái
+  const center = { lat: 47.840606, lng: 19.287012 };
+
+
+            // Térkép létrehozása
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: location,
+				mapId: "DEMO_MAP_ID",
+            });
+
+
+            // Marker hozzáadása
+            const marker1 = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+			const marker2 = new google.maps.Marker({
+                position: { lat: 47.49, lng: 19.05 }, 
+				title: "Főváros",
+                map: map,
+				
+				
+  
+            });
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
+    </script>
+</body>
+</html>
