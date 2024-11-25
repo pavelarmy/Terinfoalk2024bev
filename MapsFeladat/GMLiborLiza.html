@@ -30,6 +30,19 @@ width: 100%;
 	   position: location,
 	   map: map,
 	});
+		
+const pinCatcafe = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "blue",
+	background: "yellow,
+	glyphColor: "red",
+  });
+  const catcafe = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.67784100031703, lng: 16.54048351456533 },
+    title: "Malmacska",
+	content: pinCatcafe.element,
+  });
    }
 </script>
    <script async
