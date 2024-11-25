@@ -21,7 +21,8 @@
             // Alapértelmezett helyszín (Sopron)
             const location = { lat: 47.690, lng: 16.599 };
 			const location2 = { lat: 47.681, lng: 16.577 };
-
+            const location3 = { lat: 47.684, lng: 16.588};
+			const location4 = { lat: 47.674, lng: 16.600};
             // Térkép létrehozása
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 10,
@@ -50,6 +51,30 @@
           path: google.maps.SymbolPath.CIRCLE, // Kör alakú 
           scale: 10, // Méret
           fillColor: "blue", // Kék szín
+          fillOpacity: 1, // Átlátszatlanság
+          strokeColor: "black", // Körvonala fekete
+          strokeWeight: 2, // Körvonal vastagsága
+		  }
+		  });
+		  const marker3 = new google.maps.Marker({
+                position: location3,
+                map: map,
+				icon: {
+          path: google.maps.SymbolPath.CIRCLE, // Kör alakú 
+          scale: 10, // Méret
+          fillColor: "red", // Piros szín
+          fillOpacity: 1, // Átlátszatlanság
+          strokeColor: "black", // Körvonala fekete
+          strokeWeight: 2, // Körvonal vastagsága
+		  }
+		  });
+		  const marker4 = new google.maps.Marker({
+                position: location4,
+                map: map,
+				icon: {
+          path: google.maps.SymbolPath.CIRCLE, // Kör alakú 
+          scale: 10, // Méret
+          fillColor: "orange", // Narancssárga szín
           fillOpacity: 1, // Átlátszatlanság
           strokeColor: "black", // Körvonala fekete
           strokeWeight: 2, // Körvonal vastagsága
