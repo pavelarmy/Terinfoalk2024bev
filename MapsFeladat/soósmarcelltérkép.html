@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilona Panzió Szentendre</title>
+    <style>
+        /* Stílus a térkép számára */
+        #map {
+            height: 100vh; /* A térkép kitölti az egész ablakot */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ilona Panzió - Szentendre</h1>
+    <div id="map"></div>
+    
+    <!-- Google Maps API betöltése -->
+    <script>
+        function initMap() {
+            // Az Ilona Panzió koordinátái
+            const ilonaPanzio = { lat: 47.672579, lng: 19.077758 };
+            
+            // Térkép inicializálása
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15, // Nagyítási szint
+                center: ilonaPanzio, // A térkép középpontja
+            });
+
+            // Jelölő hozzáadása
+            new google.maps.Marker({
+                position: ilonaPanzio,
+                map: map,
+                title: "Ilona Panzió",
+            });
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
+    </script>
+</body>
+</html>
