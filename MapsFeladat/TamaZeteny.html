@@ -3,51 +3,482 @@
 <head>
 <title>Térkép</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="./style.css" />
-<script type="module" src="./index.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>#map {height: 670px; width: 100%}</style>
 </head>
 <body>
-<h3>Google Maps API feladat</h3>
+<h3>Ábrázolva: meglátogatott fővárosok és megyeszékhelyek</h3>
 <div id="map"></div>
 
-<style>#map {height: 100%;}  html, body {height: 100%; margin: 0; padding: 0;}</style>
+<script>
+function initMap() {
+  // A térkép középpontjának koordinátái
+  const center = { lat: 47.7167, lng: 16.6500 };
 
-<script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-({key: "AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4", v: "weekly"});
-
-let map;
-
-async function initMap() {
-  // The location of Taranaki
-  const position = { lat: -39.2963132821284, lng: 174.06327895262604 };, , 
-  // Request needed libraries.
-  //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-  // The map, centered at Taranaki
-  map = new Map(document.getElementById("map"), {
-    zoom: 6,
-    center: position,
+  // Térkép objektum létrehozása ID-vel
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 5,
+    center: center,
     mapId: "DEMO_MAP_ID",
   });
-
-  // The marker, positioned at Taranaki
-  const pinBackground = new PinElement({
-	background: "black",
-	borderColor: "teal",
-	glyph: "T",
+  
+  // Jelölők
+  const pinBuda = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "red",
+	background: "green",
 	glyphColor: "white",
+	glyph: "hu"
   });
-  const marker = new AdvancedMarkerElement({
+  const buda = new google.maps.marker.AdvancedMarkerElement({
     map: map,
-    position: position,
-    title: "Taranaki",
-	content: pinBackground.element,
+    position: { lat: 47.49, lng: 19.05 },
+    title: "Budapest",
+	content: pinBuda.element,
   });
+  const pinGyor = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const gyor = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.68, lng: 17.63 },
+    title: "Győr",
+	content: pinGyor.element,
+  });
+  const pinTata = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const tata = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.59, lng: 18.39 },
+    title: "Tatabánya",
+	content: pinTata.element,
+  });
+  const pinSalg = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const salg = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 48.10, lng: 19.81 },
+    title: "Salgótarján",
+	content: pinSalg.element,
+  });
+  const pinEger = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const eger = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.90, lng: 20.37 },
+    title: "Eger",
+	content: pinEger.element,
+  });
+  const pinMisk = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const misk = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 48.10, lng: 20.79 },
+    title: "Miskolc",
+	content: pinMisk.element,
+  });
+  const pinVesz = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const vesz = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.09, lng: 17.91 },
+    title: "Veszprém",
+	content: pinVesz.element,
+  });
+  const pinSzek = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const szek = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.19, lng: 18.41 },
+    title: "Székesfehérvár",
+	content: pinSzek.element,
+  });
+  const pinSzom = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const szom = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.24, lng: 16.62 },
+    title: "Szombathely",
+	content: pinSzom.element,
+  });
+  const pinZala = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const zala = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 46.85, lng: 16.85 },
+    title: "Zalaegerszeg",
+	content: pinZala.element,
+  });
+  const pinKapo = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const kapo = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 46.36, lng: 17.78 },
+    title: "Kaposvár",
+	content: pinKapo.element,
+  });
+  const pinPecs = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const  pecs = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 46.07, lng: 18.23 },
+    title: "Pécs",
+	content: pinPecs.element,
+  });
+  const pinSzeg = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const szeg = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 46.26, lng: 20.15 },
+    title: "Szeged",
+	content: pinSzeg.element,
+  });
+  const pinBrat = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "red",
+	background: "blue",
+	glyphColor: "white",
+	glyph: "sk",
+  });
+  const brat = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 48.14, lng: 17.11 },
+    title: "Bratislava",
+	content: pinBrat.element,
+  });
+  const pinPost = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "blue",
+  });
+  const post = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 45.78, lng: 14.21 },
+    title: "Postojna",
+	content: pinPost.element,
+  });
+  const pinPrah = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "red",
+	background: "blue",
+	glyphColor: "white",
+	glyph: "cz",
+  });
+  const prah = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 50.09, lng: 14.42 },
+    title: "Praha",
+	content: pinPrah.element,
+  });
+  const pinUsti = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "blue",
+  });
+  const usti = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 50.66, lng: 14.04 },
+    title: "Ústí nad Labem",
+	content: pinUsti.element,
+  });
+  const pinKarl = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "blue",
+  });
+  const karl = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 50.23, lng: 12.87 },
+    title: "Karlovy Vary",
+	content: pinKarl.element,
+  });
+  const pinWien = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "red",
+	background: "red",
+	glyphColor: "white",
+	glyph: "at",
+  });
+  const wien = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 48.21, lng: 16.37 },
+    title: "Wien",
+	content: pinWien.element,
+  });
+  const pinEise = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "red",
+  });
+  const eise = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.85, lng: 16.52 },
+    title: "Eisenstadt",
+	content: pinEise.element,
+  });
+  const pinSalz = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "red",
+  });
+  const salz = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.80, lng: 13.05 },
+    title: "Salzburg",
+	content: pinSalz.element,
+  });
+  const pinBreg = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "red",
+  });
+  const breg = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.51, lng: 9.75 },
+    title: "Bregenz",
+	content: pinBreg.element,
+  });
+  const pinStga = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "red",
+  });
+  const sgal = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.42, lng: 9.37 },
+    title: "St. Gallen",
+	content: pinStga.element,
+  });
+  const pinVadu = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "red",
+	background: "blue",
+	glyphColor: "yellow",
+	glyph: "li",
+  });
+  const vadu = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 47.14, lng: 9.52 },
+    title: "Vaduz",
+	content: pinVadu.element,
+  });
+  const pinDres = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "yellow",
+	background: "black",
+	glyphColor: "red",
+  });
+  const dres = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 51.05, lng: 13.74 },
+    title: "Dresden",
+	content: pinDres.element,
+  });
+  const pinMunc = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "yellow",
+	background: "black",
+	glyphColor: "red",
+  });
+  const munc = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 48.14, lng: 11.58 },
+    title: "München",
+	content: pinMunc.element,
+  });
+  const pinMona = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "red",
+	background: "red",
+	glyphColor: "white",
+	glyph: "mc",
+  });
+  const mona = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 43.73, lng: 7.42 },
+    title: "Monaco",
+	content: pinMona.element,
+  });
+  const pinBolo = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const bolo = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 44.49, lng: 11.34 },
+    title: "Bologna",
+	content: pinBolo.element,
+  });
+  const pinTrie = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const trie = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 45.65, lng: 13.77 },
+    title: "Trieste",
+	content: pinTrie.element,
+  });
+  const pinFire = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const fire = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 43.77, lng: 11.25 },
+    title: "Firenze",
+	content: pinFire.element,
+  });
+  const pinVene = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "red",
+	background: "white",
+	glyphColor: "green",
+  });
+  const vene = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 45.44, lng: 12.34 },
+    title: "Venezia",
+	content: pinVene.element,
+  });
+  const pinSanm = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "green",
+	background: "cyan",
+	glyphColor: "white",
+	glyph: "sm",
+  });
+  const sanm = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 43.93, lng: 12.45 },
+    title: "San Marino",
+	content: pinSanm.element,
+  });
+  const pinEdin = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "blue",
+	background: "white",
+	glyphColor: "red",
+  });
+  const edin = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 55.95, lng: -3.19 },
+    title: "Edinburgh",
+	content: pinEdin.element,
+  });
+  const pinLond = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "blue",
+	background: "red",
+	glyphColor: "white",
+	glyph: "gb",
+  });
+  const lond = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 51.50, lng: -0.13 },
+    title: "London",
+	content: pinLond.element,
+  });
+  const pinAmst = new google.maps.marker.PinElement({
+	scale: 0.75,
+	borderColor: "blue",
+	background: "red",
+	glyphColor: "white",
+	glyph: "nl",
+  });
+  const amst = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 52.37, lng: 4.89 },
+    title: "Amsterdam",
+	content: pinAmst.element,
+  });
+  const pinLarn = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "green",
+	background: "white",
+	glyphColor: "orange",
+  });
+  const larn = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 34.92, lng: 33.63 },
+    title: "Λάρνακα",
+	content: pinLarn.element,
+  });
+  const pinPaph = new google.maps.marker.PinElement({
+	scale: 0.5,
+	borderColor: "green",
+	background: "white",
+	glyphColor: "orange",
+  });
+  const paph = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
+    position: { lat: 34.77, lng: 32.42 },
+    title: "Πάφος",
+	content: pinPaph.element,
+  });
+  
 }
-
-initMap();
 </script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap&libraries=marker"></script>
 </body>
 </html>
