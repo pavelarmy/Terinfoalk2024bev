@@ -4,7 +4,7 @@
 <title>Térkép</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>#map {height: 670px; width: 100%}</style>
+<style>body {background-color:black;color:white;} #map {height: 670px; width: 100%}</style>
 </head>
 <body>
 <h3>Ábrázolva: meglátogatott fővárosok és megyeszékhelyek</h3>
@@ -14,13 +14,16 @@
 function initMap() {
   // A térkép középpontjának koordinátái
   const center = { lat: 47.7167, lng: 16.6500 };
+  const settings = {
+    center: center,
+    zoom: 5,
+	mapTypeId: "terrain",
+    colorScheme: "DARK",
+	mapId: "DEMO_MAP_ID",
+  }
 
   // Térkép objektum létrehozása ID-vel
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 5,
-    center: center,
-    mapId: "DEMO_MAP_ID",
-  });
+  const map = new google.maps.Map(document.getElementById("map"), settings);
   
   // Jelölők
   const pinBuda = new google.maps.marker.PinElement({
@@ -403,9 +406,9 @@ function initMap() {
   });
   const pinSanm = new google.maps.marker.PinElement({
 	scale: 0.75,
-	borderColor: "green",
+	borderColor: "white",
 	background: "cyan",
-	glyphColor: "white",
+	glyphColor: "green",
 	glyph: "sm",
   });
   const sanm = new google.maps.marker.AdvancedMarkerElement({
@@ -476,7 +479,6 @@ function initMap() {
     title: "Πάφος",
 	content: pinPaph.element,
   });
-  
 }
 </script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap&libraries=marker"></script>
