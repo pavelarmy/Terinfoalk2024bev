@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps - Rácalmás Marker</title>
+    <style>
+        /* A térkép teljes magasságú legyen */
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        /* A body és html magassága 100%, hogy a térkép kitöltse a képernyőt */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- A térkép tartalmazó div -->
+    <div id="map"></div>
+
+    <script>
+        // A térkép inicializálása
+        function initMap() {
+            // Rácalmás központ koordinátái
+            const racaLmasCoords = { lat: 47.0252, lng: 18.9403 };
+
+            // A térkép létrehozása
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14, // Zoom szint
+                center: racaLmasCoords, // Térkép középpontja
+            });
+
+            // Marker létrehozása
+            const marker = new google.maps.Marker({
+                position: racaLmasCoords,
+                map: map,
+                title: "Rácalmás", // Tooltip szöveg
+            });
+        }
+    </script>
+
+    <!-- Google Maps API betöltése, a saját API kulcsoddal -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap" 
+    async defer></script>
+</body>
+</html>
