@@ -12,27 +12,39 @@
     </style>
 </head>
 <body>
-    <h1>Lakhely és születési hely</h1>
+    <h1>Egy határváros és a főváros</h1>
     <div id="map"></div>
 
     <!-- Google Maps JavaScript API betöltése -->
     <script>
         function initMap() {
-            // Alapértelmezett helyszín (Bercel)
-            const location = { lat: 47.871086, lng: 19.402822 };
+            // Alapértelmezett helyszín (Balassagyarmat)
+            const location = { lat: 48.069623, lng: 19.292508 };
+			
+  // A térkép középpontjának koordinátái
+  const center = { lat: 47.840606, lng: 19.287012 };
 
 
             // Térkép létrehozása
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,
+                zoom: 9,
                 center: location,
+				mapId: "DEMO_MAP_ID",
             });
 
 
             // Marker hozzáadása
-            const marker = new google.maps.Marker({
+            const marker1 = new google.maps.Marker({
                 position: location,
                 map: map,
+            });
+			const marker2 = new google.maps.Marker({
+                position: { lat: 47.49, lng: 19.05 }, 
+				title: "Főváros",
+                map: map,
+				
+				
+  
             });
         }
     </script>
