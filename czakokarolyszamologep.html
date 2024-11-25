@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egyszerű Kalkulátor</title>
+</head>
+<body>
+
+<h2>Egyszerű Kalkulátor</h2>
+
+<div>
+    <label for="num1">Első szám:</label>
+    <input type="number" id="num1" placeholder="Adja meg az első számot">
+</div>
+<div>
+    <label for="num2">Második szám:</label>
+    <input type="number" id="num2" placeholder="Adja meg a második számot">
+</div>
+
+<div>
+    <button onclick="calculate('add')">Összeadás</button>
+    <button onclick="calculate('subtract')">Kivonás</button>
+
+</div>
+
+<h3>Eredmény: <span id="result">-</span></h3>
+
+<script>
+function calculate(operation) {
+    const num1 = parseFloat(document.getElementById('num1').value);
+    const num2 = parseFloat(document.getElementById('num2').value);
+    let result;
+
+    if (isNaN(num1) || isNaN(num2)) {
+        result = 'Kérjük, adjon meg két számot.';
+    } else {
+        switch(operation) {
+            case 'add':
+                result = num1 + num2;
+                break;
+            case 'subtract':
+                result = num1 - num2;
+                break;
+
+        }
+    }
+
+    document.getElementById('result').textContent = result;
+}
+</script>
+
+</body>
+</html>
