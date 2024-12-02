@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100.000 lakos feletti települések Magyarországon</title>
+    <style>
+        #map {
+            height: 600px; /* Térkép magassága */
+            width: 100%;  /* Térkép szélessége */
+        }
+    </style>
+</head>
+<body>
+    <h1>100.000 lakos feletti települések Magyarországon</h1>
+    <div id="map"></div>
+    <!-- Google Maps JavaScript API betöltése -->
+    <script>
+        function initMap() {
+            // Pusztavacs Magyarország közepe
+            const centerLocation = { lat: 47.1712, lng: 19.5018 };
+            // Térkép létrehozása
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: centerLocation,
+            });
+
+            // Marker adatok tömbje
+            const locations = [
+                { lat: 47.4983, lng: 19.0408, title: "Budapest" },
+                { lat: 47.5300, lng: 21.6391, title: "Debrecen" },
+                { lat: 46.2539, lng: 20.1461, title: "Szeged" },
+                { lat: 48.1041, lng: 20.7913, title: "Miskolc" },
+                { lat: 46.0707, lng: 18.2331, title: "Pécs" },
+                { lat: 47.6839, lng: 17.6350, title: "Győr" },
+                { lat: 47.9530, lng: 21.7271, title: "Nyíregyháza" },
+                { lat: 46.9074, lng: 19.6917, title: "Kecskemét" },
+                { lat: 47.1888, lng: 18.4137, title: "Székesfehérvár" },
+            ];
+
+            // Markerek hozzáadása
+            locations.forEach(location => {
+                const marker = new google.maps.Marker({
+                    position: { lat: location.lat, lng: location.lng },
+                    map: map,
+                    title: location.title,
+                });
+            });
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
+    </script>
+</body>
+</html>

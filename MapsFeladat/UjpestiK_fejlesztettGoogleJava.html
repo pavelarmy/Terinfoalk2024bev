@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps</title>
+    <style>
+        #map {
+            height: 400px; /* Térkép magassága */
+            width: 100%;  /* Térkép szélessége */
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Maps - Sopron és Budapest</h1>
+    <div id="map"></div>
+
+    <!-- Google Maps JavaScript API betöltése -->
+    <script>
+        function initMap() {
+            // Budapest koordinátái
+            const budapest = { lat: 47.4979, lng: 19.0402 };
+
+            // Sopron koordinátái
+            const sopron = { lat: 47.6810, lng: 16.5900 };
+
+            // Térkép létrehozása Budapest középponttal
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 7,
+                center: { lat: 47.5894, lng: 17.8151 }, // Középpont Budapest és Sopron között
+            });
+
+            // Marker Budapesthez
+            const budapestMarker = new google.maps.Marker({
+                position: budapest,
+                map: map,
+                title: "Budapest",
+            });
+
+            // Marker Sopronhoz
+            const sopronMarker = new google.maps.Marker({
+                position: sopron,
+                map: map,
+                title: "Sopron",
+            });
+
+            // Információs ablak Sopronhoz
+            const distance = calculateDistance(budapest, sopron); // Távolság számítása
+            const infoWindow = new google.maps.InfoWindow({
+                content: `<h3>Sopron</h3><p>Távolság Budapesttől: ${distance.toFixed(2)} km</p>`,
+            });
+
+            // Információs ablak megnyitása, ha Sopronra kattintanak
+            sopronMarker.addListener("click", () => {
+                infoWindow.open(map, sopronMarker);
+            });
+        }
+
+        // Távolság számítása két koordináta között (Haversine formula)
+        function calculateDistance(coord1, coord2) {
+            const R = 6371; // A Föld sugara km-ben
+            const dLat = degToRad(coord2.lat - coord1.lat);
+            const dLng = degToRad(coord2.lng - coord1.lng);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(degToRad(coord1.lat)) * Math.cos(degToRad(coord2.lat)) *
+                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c; // Távolság km-ben
+        }
+
+        function degToRad(deg) {
+            return deg * (Math.PI / 180);
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk2v8WtXB57rTW6EH9xFkYxk88u02Xrx4&callback=initMap">
+    </script>
+</body>
+</html>
