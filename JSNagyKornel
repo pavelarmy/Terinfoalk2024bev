@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nagy Kornél</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <script>
+      // Négyszög élhosszának megadása.
+      Élhossz = 20;
+      // A kiinduló adatk kiíratása.
+      document.write("A számítandó négyszög élhossza:", Élhossz);
+      // Sortörés
+      document.write("<br>");
+      // Eredmények kiíratása
+      document.write("A négyszög területe:", Élhossz*Élhossz);
+    </script>
+  </body>
+</html>
