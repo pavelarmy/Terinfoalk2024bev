@@ -14,24 +14,60 @@
 <body>
     <h1>Google Maps Ujpesti Krisztian</h1>
     <div id="map"></div>
+    <div id="distance"></div>
 
     <!-- Google Maps JavaScript API betöltése -->
     <script>
         function initMap() {
-            // Alapértelmezett helyszín (Budapest)
+            // Alapértelmezett helyszín (Budapest), most Sopron is melle kerul
             const location = { lat: 47.4979, lng: 19.0402 };
+            const sopron = { lat: 47.6813, lng: 16.5849 };
 
-            // Térkép létrehozása
+            // Térkép létrehozása, zoom es location valtoztatas
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,
-                center: location,
+                zoom: 7,
+                center: Budapest,
             });
 
-            // Marker hozzáadása
-            const marker = new google.maps.Marker({
-                position: location,
+            // Marker hozzáadása Budapestre
+            const budapestMarker = new google.maps.Marker({
+                position: budapest,
                 map: map,
+                title: "Budapest",
             });
+
+            // Marker hozzáadása Sopronra
+            const sopronMarker = new google.maps.Marker({
+                position: sopron,
+                map: map,
+                title: "Sopron",
+                });
+
+            // Távolság kiszámítása a Google Maps Distance Matrix API segítségével
+            const service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix(
+                {
+                    origins: [budapest],
+                    destinations: [sopron],
+                    travelMode: 'DRIVING', // Választható: DRIVING, WALKING, BICYCLING, TRANSIT
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                },
+                function(response, status) {
+                    if (status === 'OK') {
+                        const distanceElement = document.getElementById('distance');
+                        const result = response.rows[0].elements[0];
+                        if (result.status === 'OK') {
+                            const distance = result.distance.text; // Távolság szövegesen (pl. "200 km")
+                            const duration = result.duration.text; // Időtartam szövegesen (pl. "2 óra 30 perc")
+                            distanceElement.innerHTML = `Budapest és Sopron közötti távolság: <strong>${distance}</strong>, időtartam: <strong>${duration}</strong>.`;
+                        } else {
+                            distanceElement.innerHTML = "Nem sikerült kiszámítani a távolságot.";
+                        }
+                    } else {
+                        console.error("Távolság kiszámítása sikertelen: " + status);
+                    }
+                }
+            );
         }
     </script>
     <script async
@@ -39,3 +75,4 @@
     </script>
 </body>
 </html>
+
